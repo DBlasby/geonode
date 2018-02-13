@@ -33,6 +33,7 @@ import dj_database_url
 from django.conf.global_settings import DATETIME_INPUT_FORMATS
 from geonode import get_version
 from kombu import Queue
+from django.utils.module_loading import import_string
 
 # GeoNode Version
 VERSION = get_version()
@@ -1255,3 +1256,6 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 SOCIALACCOUNT_ADAPTER = 'geonode.people.adapters.SocialAccountAdapter'
 
 INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
+
+# Choose thumbnail generator -- this is the default generator
+THUMBNAIL_GENERATOR = import_string("geonode.geoserver.helpers.create_gs_thumbnail_geonode")
